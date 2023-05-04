@@ -59,8 +59,8 @@ jobs:
                     docker buildx build \
                       --progress plain \
                       --platform=linux/amd64,linux/arm64 \
-                      --cache-from=ghcr.io/Loic-Hakisa/psalm:build-cache \
-                      --cache-to=type=registry,ref=ghcr.io/Loic-Hakisa/psalm:build-cache,mode=max,push=true \
+                      --cache-from=ghcr.io/loic-hakisa/psalm:build-cache \
+                      --cache-to=type=registry,ref=ghcr.io/loic-hakisa/psalm:build-cache,mode=max,push=true \
                       --pull \
                       --build-arg PSALM_VERSION="$PSALM_VERSION" \
                       .
@@ -70,7 +70,7 @@ jobs:
                     # Load image for current platform into local Docker (see https://github.com/docker/buildx/issues/59)
                     docker buildx build \
                       --progress plain \
-                      --cache-from=ghcr.io/Loic-Hakisa/psalm:build-cache \
+                      --cache-from=ghcr.io/loic-hakisa/psalm:build-cache \
                       --tag build \
                       --build-arg PSALM_VERSION="$PSALM_VERSION" \
                       --load .
@@ -84,8 +84,8 @@ jobs:
                     docker buildx build \
                       --progress plain \
                       --platform=linux/amd64,linux/arm64 \
-                      --cache-from=ghcr.io/Loic-Hakisa/psalm:build-cache \
-                      --tag ghcr.io/Loic-Hakisa/psalm:"$PSALM_VERSION" \
-                      --label org.opencontainers.image.source=https://github.com/Loic-Hakisa/docker-psalm \
+                      --cache-from=ghcr.io/loic-hakisa/psalm:build-cache \
+                      --tag ghcr.io/loic-hakisa/psalm:"$PSALM_VERSION" \
+                      --label org.opencontainers.image.source=https://github.com/loic-hakisa/docker-psalm \
                       --build-arg PSALM_VERSION="$PSALM_VERSION" \
                       --push .
